@@ -1,6 +1,5 @@
 import com.google.gson.Gson;
 import io.github.cdimascio.dotenv.Dotenv;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URI;
@@ -10,20 +9,20 @@ import java.net.http.HttpResponse;
 
 public class ConverteMoeda {
 
-    public Moeda ProcuraMoeda(String codigoMoeda1, String codigoMoeda2, BigDecimal valor) {
+    public MoedaDTO ProcuraMoeda(String codigoMoeda1, String codigoMoeda2, BigDecimal valor) {
         if (valor.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new RuntimeException("O valor tem que ser maior que zero");
+            throw new RuntimeException("Entre com um valor maior que zero");
         }
             Dotenv dotenv = Dotenv.load();
             String ExchageRateApi = dotenv.get("API_KEY");
 
 
-            URI endereco = URI.create(String.format("https://v6.exchangerate-api.com/v6/%s/pair/%s/%s/%.2f",
+            URI url = URI.create(String.format("https://v6.exchangerate-api.com/v6/%s/pair/%s/%s/%.2f",
                     ExchageRateApi, codigoMoeda1, codigoMoeda2, valor));
 
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(endereco)
+                    .uri(url)
                     .build();
 
             try {
@@ -35,7 +34,7 @@ public class ConverteMoeda {
 
                     throw new NullPointerException("A resposta do servidor é nula");
                 }
-                return new Gson().fromJson(response.body(), Moeda.class);
+                return new Gson().fromJson(response.body(), MoedaDTO.class);
 
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException("Erro ao realizar requisição", e);

@@ -1,5 +1,7 @@
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
@@ -22,9 +24,10 @@ public class Principal {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ConverteMoeda conversor = new ConverteMoeda();
         String codigoMoeda1 = "", codigoMoeda2 = "";
-        BigDecimal valor = null;
+        ConverteMoeda conversor = new ConverteMoeda();
+        List listaMoedas = new ArrayList();
+
         menu();
 
         do {
@@ -67,19 +70,23 @@ public class Principal {
                     scanner.next(); // Consome a entrada inválida
                     continue;
                 }
-                    valor = scanner.nextBigDecimal();
 
+                BigDecimal valorAConverter = scanner.nextBigDecimal();
 
-                Moeda minhaMoeda = conversor.ProcuraMoeda(codigoMoeda1, codigoMoeda2, valor);
-                System.out.println(String.format("""
+                MoedaDTO moedaDTO = conversor.ProcuraMoeda(codigoMoeda1, codigoMoeda2, valorAConverter);
+                Moeda minhaMoeda = new Moeda(moedaDTO);
+                minhaMoeda.setValorAConverter(valorAConverter);
+                minhaMoeda.setDataDeCriacao(LocalDateTime.now());
+
+                System.out.printf("""
                                 Valor converter: %s  [%s]
                                 Valor Convertido: %s [%s]
-                                """,
-                        valor,
-                        minhaMoeda.base_code(),
-                        minhaMoeda.conversion_result().setScale(2, RoundingMode.HALF_EVEN),
-                        minhaMoeda.target_code()));
-
+                                %n""",
+                        minhaMoeda.getValorAConverter(),
+                        minhaMoeda.getCodigoMoedaBase(),
+                        minhaMoeda.getValorConvertido(),
+                        minhaMoeda.getCodigoMoedaAlvo());
+                listaMoedas.add(minhaMoeda);
             } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
             }
