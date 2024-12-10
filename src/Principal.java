@@ -85,6 +85,9 @@ public class Principal {
             }
             menu();
         } while (true);
+        System.out.println(listaMoedas);
+        var log = new Log();
+       log.criaLog(listaMoedas);
     }
 
 }
