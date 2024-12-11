@@ -10,7 +10,7 @@ import java.util.List;
 public class Log {
 
 
-    public  void criaLog(List<?> listaMoedas) {
+    public  void criaLog(List<Moeda> listaMoedas) {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDateTime.class, new SerealizaLocalDateTime())
                 .setPrettyPrinting().create();

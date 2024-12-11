@@ -19,8 +19,32 @@
     "dataDeCriacao": "10-Dec-2024 18:25:25",
     "codigoMoedaBase": "BRL",
     "codigoMoedaAlvo": "EUR",
-    "valorAConverter": 500,
+    "valorAConverter": 500.0,
     "taxaDeConversao": 0.16,
     "valorConvertido": 77.85
+  },
+  {
+    "dataDeCriacao": "10-Dec-2024 21:02:52",
+    "codigoMoedaBase": "EUR",
+    "codigoMoedaAlvo": "BRL",
+    "valorAConverter": 300.0,
+    "taxaDeConversao": 6.42,
+    "valorConvertido": 1926.24
+  },
+  {
+    "dataDeCriacao": "11-Dec-2024 12:08:25",
+    "codigoMoedaBase": "USD",
+    "codigoMoedaAlvo": "ARS",
+    "valorAConverter": 5.0,
+    "taxaDeConversao": 1017.25,
+    "valorConvertido": 5086.25
+  },
+  {
+    "dataDeCriacao": "11-Dec-2024 12:13:30",
+    "codigoMoedaBase": "EUR",
+    "codigoMoedaAlvo": "BRL",
+    "valorAConverter": 500,
+    "taxaDeConversao": 6.37,
+    "valorConvertido": 3187.45
   }
 ]

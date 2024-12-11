@@ -26,7 +26,7 @@ public class Principal {
         Scanner scanner = new Scanner(System.in);
         String codigoMoeda1 = "", codigoMoeda2 = "";
         ConverteMoeda conversor = new ConverteMoeda();
-        List listaMoedas = new ArrayList();
+        List<Moeda> listaMoedas = new ArrayList();
 
         menu();
 
@@ -92,7 +92,6 @@ public class Principal {
             }
             menu();
         } while (true);
-        System.out.println(listaMoedas);
         var log = new Log();
        log.criaLog(listaMoedas);
     }
